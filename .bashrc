@@ -6,7 +6,7 @@ HISTSIZE=10000
 shopt -s histappend
 
 alias ll='ls -lh'
-alias ls='ls --color --group-directories-first -F'
+alias ls='ls -F'
 
 ssh_setup() {
 	local ssh_agent_info=$(~/bin/start-ssh-agent)
