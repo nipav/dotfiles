@@ -19,13 +19,13 @@ clean_and_start_agent() {
 }
 
 if [ ! -f "$agent_pid_file" ] || [ ! -f "$agent_sock_file" ]; then
-	pgrep ssh-agent > /dev/null
-	[ $? -eq 0 ] && pkill ssh-agent
+	ssh_agent_pid=$(ps -A | grep ssh-agent | awk '{print $1}')
+	[ ! -z $ssh_agent_pid ] && kill $ssh_agent_pid
 	start_agent
 	exit
 else
 	pid=$(cat $agent_pid_file)
-	ps -q $pid > /dev/null
+	ps $pid > /dev/null
 	if [ $? -ne 0 ]; then
 		clean_and_start_agent
 		exit
