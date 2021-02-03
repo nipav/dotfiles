@@ -46,7 +46,6 @@ if has('gui_running')
   set guioptions-=T
   set guioptions-=r
   set guioptions-=L
-  set guifont=Cascadia\ Mono:h10
 endif
 
 " Change the cursor to a line when in INSERT mode, and back to a bar when in
