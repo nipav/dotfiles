@@ -1,0 +1,49 @@
+#!/usr/bin/env sh
+
+color0='#000000'
+color1='#f2777a'
+color2='#b9ca4a'
+color3='#e6c547'
+color4='#7aa6da'
+color5='#c397d8'
+color6='#70c0ba'
+color7='#ffffff'
+color8='#666666'
+color9='#ff3334'
+color10='#9ec400'
+color11='#e7c547'
+color12='#7aa6da'
+color13='#b77ee0'
+color14='#54ced6'
+color15='#ffffff'
+
+bg_color='#333333'
+fg_color='#d3d0c8'
+cr_color='#ffffff'
+
+font='DejaVu Sans Mono'
+font_size=9
+
+exec urxvt \
+	+sb \
+	-bc \
+	-bg "$bg_color" \
+	-fg "$fg_color" \
+	-cr "$cr_color" \
+	-fn "xft:$font:size=$font_size" \
+	--color0 "$color0" \
+	--color1 "$color1" \
+	--color2 "$color2" \
+	--color3 "$color3" \
+	--color4 "$color4" \
+	--color5 "$color5" \
+	--color6 "$color6" \
+	--color7 "$color7" \
+	--color8 "$color8" \
+	--color9 "$color9" \
+	--color10 "$color10" \
+	--color11 "$color11" \
+	--color12 "$color12" \
+	--color13 "$color13" \
+	--color14 "$color14" \
+	--color15 "$color15"

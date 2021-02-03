@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+pgrep xmobar > /dev/null
+[ $? -eq 0 ] && pkill xmobar
+xmobar

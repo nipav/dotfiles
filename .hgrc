@@ -1,0 +1,10 @@
+[alias]
+lg = log -G -f
+
+[extensions]
+hgext.convert =
+purge =
+shelve =
+
+[ui]
+username = Niko Pavlinek <niko.pavlinek@gmail.com>

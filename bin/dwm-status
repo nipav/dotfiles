@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+while :; do
+	cur_date=$(date +'%a %F %H:%M')
+	xsetroot -name "$cur_date"
+	sleep 5
+done

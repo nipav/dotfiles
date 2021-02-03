@@ -1,0 +1,15 @@
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[init]
+	defaultBranch = master
+[merge]
+	tool = vimdiff
+[mergetool]
+	prompt = true
+[pull]
+	rebase = true
+[user]
+	name = Niko Pavlinek
+	email = niko.pavlinek@gmail.com
