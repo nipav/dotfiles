@@ -63,6 +63,8 @@ function! openbsd#OpenBSD_Style()
     setlocal cinoptions=(4200,u4200,+0.5s,*500,:0,t0,U4200
     setlocal indentexpr=IgnoreParenIndent()
     setlocal indentkeys=0{,0},0),:,0#,!^F,o,O,e
+    setlocal formatoptions-=c
+    setlocal formatoptions-=t
     setlocal noexpandtab
     setlocal shiftwidth=8
     setlocal tabstop=8
