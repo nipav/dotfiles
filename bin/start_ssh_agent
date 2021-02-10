@@ -11,33 +11,33 @@ my $AGENT_SOCK_FILE = "$HOME/.ssh/agent_sock";
 my $AGENT_PID_FILE = "$HOME/.ssh/agent_pid";
 
 sub run {
-	my ($exe) = @_ or die "not args given";
+	my $exe = $_[0];
 	my $out = `$exe`;
 	die "couldn't execute '$exe'" unless $? == 0;
 	return $out;
 }
 
 sub killall {
-	my ($procname) = @_ or die "no args given";
+	my $procname = $_[0];
 	my $out = run("ps -A");
 	foreach my $line (split(/\n/, $out)) {
 		$_ = $line;
 		if (/$procname$/) {
 			my $pid = (split(" "))[0];
-			kill "HUP", $pid;
+			kill("HUP", $pid);
 		}
 	}
 }
 
 sub slurp_file {
-	my ($filename) = @_ or die "no args given";
+	my $filename = $_[0];
 	open my $fh, "<", $filename or die "couldn't open '$filename'";
 	read $fh, my $content, -s $fh;
 	return $content;
 }
 
 sub write_file {
-	my ($filename, $content) = @_ or die "no args given";
+	my ($filename, $content) = @_;
 	open my $fh, ">", $filename or die "couldn't open '$filename'";
 	print $fh $content;
 }

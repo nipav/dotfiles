@@ -9,7 +9,7 @@ alias ll='ls -lh'
 alias ls='ls -F'
 
 ssh_setup() {
-	local ssh_agent_info=$(~/bin/start-ssh-agent)
+	local ssh_agent_info=$(~/bin/start_ssh_agent)
 	local ssh_agent_sock=$(echo $ssh_agent_info | cut -d : -f 1)
 	local ssh_agent_pid=$(echo $ssh_agent_info | cut -d : -f 2)
 
