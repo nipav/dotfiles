@@ -1,8 +1,0 @@
-#!/usr/bin/env sh
-
-while :; do
-	my_time=$(TZ="Europe/Ljubljana" date +"%A %F %H:%M")
-	utc_time=$(TZ="UTC" date +"%H:%M")
-	xsetroot -name "$my_time ($utc_time UTC)"
-	sleep 5
-done
