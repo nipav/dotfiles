@@ -1,6 +1,15 @@
 set nocompatible
 
+let g:loaded_matchparen = 1
 packadd! matchit
+
+call plug#begin('~/.vim/plugged')
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'gruvbox-community/gruvbox'
+Plug 'luochen1990/rainbow'
+call plug#end()
+
+let g:rainbow_active = 1
 
 set autoindent
 set autoread
@@ -25,21 +34,21 @@ set number
 set ruler
 set scrolloff=3
 set shortmess+=I
-set showmatch
 set smartcase
 set spelllang=en_us,sl
 set splitbelow
 set splitright
 set textwidth=80
+set viminfo='50,\"100,:100,%,n~/.viminfo
 set writebackup
 
 set wildmenu
 set wildignore=*.o
 
-set noexpandtab
-set shiftwidth=8
-set softtabstop=8
-set tabstop=8
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
 
 if has('gui_running')
   set guioptions-=m
@@ -78,36 +87,10 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 syntax on
 set background=dark
 
-colorscheme ron
+let g:gruvbox_contrast_dark = 'hard'
+colorscheme gruvbox
 
-highlight ColorColumn ctermbg=darkgrey guibg=lightgrey
-highlight Comment cterm=bold ctermfg=none
-highlight CursorLine cterm=bold
 highlight ExtraWhitespace cterm=underline ctermfg=red
-highlight NonText ctermfg=darkgrey
-highlight Pmenu ctermbg=white ctermfg=black
-highlight PmenuSel ctermbg=darkcyan ctermfg=black
-highlight PreProc ctermfg=grey
-highlight Search ctermbg=12
-highlight SpecialKey ctermfg=darkgrey
-highlight SpellBad cterm=underline ctermfg=red ctermbg=none
-highlight SpellLocal cterm=underline ctermfg=cyan ctermbg=none
-highlight StatusLine cterm=none ctermbg=lightgrey ctermfg=black
-highlight StatusLineNC cterm=none ctermbg=none ctermfg=darkgrey
-highlight String ctermfg=darkblue cterm=italic
-highlight TabLine cterm=none ctermfg=darkgrey ctermbg=none
-highlight TabLineFill cterm=none
-highlight Title cterm=none ctermfg=darkgrey
-highlight Todo ctermbg=NONE ctermfg=red cterm=bold
-highlight Type ctermfg=darkblue
-highlight cIncluded ctermfg=NONE cterm=bold
-highlight clear SignColumn
-highlight hareKeyword ctermbg=NONE ctermfg=darkcyan
-highlight jsParensError ctermbg=NONE
-highlight lineNr ctermfg=grey cterm=italic
-highlight pythonBuiltin ctermfg=darkcyan
-highlight pythonConditional ctermfg=darkcyan
-highlight pythonInclude ctermfg=blue
 
 function! HSort()
   let l:curpos = getpos('.')[2]
@@ -121,22 +104,31 @@ nnoremap <silent> <leader>e :e $MYVIMRC<CR>
 nnoremap <silent> <leader>l :set list!<CR>
 nnoremap <silent> <leader>s :call HSort()<CR>
 
+" Some common typos...
+command! -bang -nargs=? -complete=file W w<bang> <args>
+command! -bang -nargs=? -complete=file Wq wq<bang> <args>
+command! -bang -nargs=? -complete=file WQ wq<bang> <args>
+command! -bang Q q<bang>
+command! -bang Qa qa<bang>
+command! -bang QA qa<bang>
+
 filetype plugin indent on
 
 augroup np_au
   autocmd!
-  autocmd ColorScheme * highlight ExtraWhitespace cterm=underline ctermfg=red
+  autocmd BufReadPost * if line("'\"") | exe "'\"" | endif " restore cursor pos
   autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+  autocmd ColorScheme * highlight ExtraWhitespace cterm=underline ctermfg=red
 
   autocmd BufRead,BufNewFile *.h setl filetype=c
-  autocmd FileType asciidoc setl spell
+  autocmd FileType markdown setl fo-=t spell
   autocmd FileType c :call openbsd#OpenBSD_Style()
-  autocmd FileType cpp setl cindent cino=:0,g0,l1,N-s fo-=c fo-=t noet sts=8 sw=8 ts=8
+  autocmd FileType cpp setl cindent cino=:0,g0,l1,N-s et fo-=c fo-=t sts=4 sw=4 ts=4
+  autocmd FileType css setl et sts=2 sw=2 ts=2
   autocmd FileType gitcommit setl spell
   autocmd FileType hgcommit setl spell
   autocmd FileType html setl et sts=2 sw=2 ts=2
-  autocmd FileType meson setl noet sts=8 sw=8 ts=8
-  autocmd FileType python setl et sts=4 sw=4 ts=4
+  autocmd FileType pascal setl et sts=2 sw=2 ts=2
   autocmd FileType vim setl et sts=2 sw=2 ts=2
   autocmd FileType xml setl et sts=2 sw=2 ts=2
 augroup END
